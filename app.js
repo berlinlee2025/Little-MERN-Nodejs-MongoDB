@@ -33,8 +33,9 @@ app.use('/uploads/images', express.static(path.join('uploads', 'images')));
 const corsOptions = {
   origin: function (origin, callback) {
       const allowedOrigins = ['http://localhost:3020', 'http://localhost:3000'];
+
       if (process.env.NODE_ENV === 'production') {
-          allowedOrigins.push('https://little-mern-nodejs-mongodb.onrender.com')
+          allowedOrigins.push('https://little-mern-react.onrender.com')
       }
       if (allowedOrigins.indexOf(origin) !== -1) {
           callback(null, true);
