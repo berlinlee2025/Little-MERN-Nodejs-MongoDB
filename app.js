@@ -57,6 +57,9 @@ mongoose
     }
   })
   .then(() => {
+    console.log(`\nmongoose_uri:\n`, mongoose_uri, `\n`);
+  })
+  .then(() => {
     app.listen(port, () => {
       printDateTime();
       console.log(`\nNode app is up & running on port: ${port}\n`);
