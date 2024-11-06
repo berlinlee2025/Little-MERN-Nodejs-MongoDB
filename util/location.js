@@ -22,6 +22,8 @@ async function getCoordsForAddress(address) {
     }
 
     const coordinates = data.results[0].geometry.location;
+    console.log(`\nAPI_KEY:\n`, process.env.API_KEY, `\n`);
+    console.log(`\nbackend/util/location.js\ncoordinates:\n`, coordinates, `\n`);
 
     return coordinates;
   } catch (error) {
