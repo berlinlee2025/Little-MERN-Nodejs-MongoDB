@@ -30,7 +30,7 @@ app.use(bodyParser.json({ limit: '100mb' }));
 app.use('/uploads/images', express.static(path.join('uploads', 'images')));
 
 app.use(corsSetup);
-// app.use(cors());
+app.use(cors());
 
 /* routes/places-routes.js */
 app.use('/api/places', placesRoutes);
@@ -46,7 +46,16 @@ app.use(uploadImageErrorHandler);
 const port = process.env.PORT || 3011;
 
 mongoose
-  .connect(mongoose_uri)
+  .connect(mongoose_uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+    writeConcern: {
+      w: "majority",
+      wtimeout: 10000
+    }
+  })
   .then(() => {
     app.listen(port, () => {
       printDateTime();
